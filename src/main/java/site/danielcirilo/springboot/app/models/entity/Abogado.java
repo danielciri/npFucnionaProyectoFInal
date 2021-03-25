@@ -14,5 +14,7 @@ public class Abogado extends Persona{
 	@OneToOne
 	private Agenda agenda;
 	
+	private String pruebaAbogadoGithub;
+	
  
 }
