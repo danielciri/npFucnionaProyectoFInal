@@ -13,8 +13,7 @@ public class Abogado extends Persona{
 	@Column
 	@OneToOne
 	private Agenda agenda;
-	
-	private String pruebaAbogadoGithub;
+
 	
  
 }
