@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -24,10 +26,6 @@ public class Cliente extends Persona implements Serializable{
 	
 	@Column (name = "fecha_nacimiento")
 	private Date fecha_nacimiento;
-	
-	@Column (name = "facturas")
-	@OneToMany
-	private ArrayList<Factura> facturas;
 	
 	
 

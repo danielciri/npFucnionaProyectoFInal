@@ -1,5 +1,6 @@
 package site.danielcirilo.springboot.app.models.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -12,7 +13,7 @@ import javax.persistence.Table;
 @Entity
 @Table (name="personas")
 @Inheritance( strategy = InheritanceType.JOINED)
-public abstract class Persona {
+public abstract class Persona implements Serializable{
 	
 	
 

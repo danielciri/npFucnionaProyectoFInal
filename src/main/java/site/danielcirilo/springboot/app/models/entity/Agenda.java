@@ -3,11 +3,14 @@ package site.danielcirilo.springboot.app.models.entity;
 import java.util.Date;
 
 import javax.annotation.Generated;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -27,5 +30,9 @@ public class Agenda {
 	private Date fechaCreacion;
 	@Column(name = "fecha_finalizacion")
 	private Date fechaFinalizacion;
+	
+	@JoinColumn(name = "licencia_abogado")
+	@OneToOne(cascade = CascadeType.ALL)
+	private Abogado agenda;
 
 }

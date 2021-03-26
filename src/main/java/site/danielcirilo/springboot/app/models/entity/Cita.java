@@ -1,12 +1,15 @@
 package site.danielcirilo.springboot.app.models.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -15,24 +18,25 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity 
 @Table(name = "citas")
-public class Cita {
+public class Cita implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idCita;
 	
-	@Column(name = "nombre_cliente")
-	@OneToOne
+	@JoinColumn(name = "licencia_abogado")
+	@OneToOne (cascade = CascadeType.ALL)
 	private Cliente nomCliente;
 	
 	@Column(name = "hora_cita")
-	private DateTimeFormat hora;
+	private Date hora;
 	
 	@Column
 	private String asunto;
 	
-	@Column(name = "nombre_abogado")
-	@OneToOne
+
+	@JoinColumn(name = "nombre_abogado")
+	@OneToOne (cascade = CascadeType.ALL)
 	private Abogado nomAbogado;
 	
 	@Column(name = "estado_cita")

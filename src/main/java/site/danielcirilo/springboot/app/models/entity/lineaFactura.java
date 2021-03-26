@@ -10,17 +10,16 @@ import javax.persistence.Table;
  *
  */
 
-@Entity
-@Table (name = "linea_factura")
+
 public class lineaFactura {
 	
-	@Column
+
 	private float iva;
 	
-	@Column (name = "sub_total")
+
 	private float subTotal;
 	
-	@Column
+	
 	private float total;
 
 }

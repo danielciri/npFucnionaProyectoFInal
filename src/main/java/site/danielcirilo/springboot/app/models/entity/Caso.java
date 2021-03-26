@@ -2,11 +2,13 @@ package site.danielcirilo.springboot.app.models.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -22,20 +24,22 @@ public class Caso {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigoCaso;
-	@Column(name ="nombre_servicio" )
+	@JoinColumn(name ="nombre_servicio" )
+	@OneToOne (cascade = CascadeType.ALL)
 	private Servicio nombreServicio;
 	
-	@Column(name ="fecha_inicio" )
+	@Column(name ="fecha_inicio"  )
 	private Date fechaInicio;
 	
-	@Column(name ="fecha_inicio" )
+	@Column(name ="fecha_finalizacion" )
 	private Date fechaFinalizacion;
 	
-	@Column(name ="nombre_cliente" )
+	@JoinColumn(name ="nombre_cliente" )
+	@OneToOne (cascade = CascadeType.ALL)
 	private Cliente nombreCliente;
 	
-	@Column(name ="licencia" )
-	@OneToOne
+	@JoinColumn(name ="licencia" )
+	@OneToOne(cascade = CascadeType.ALL)
 	private Abogado licencia;
 	
 	@Column(name ="titulo_caso" )
