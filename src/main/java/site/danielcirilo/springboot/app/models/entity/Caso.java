@@ -5,12 +5,14 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 /**
@@ -24,12 +26,15 @@ public class Caso {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigoCaso;
+	
 	@JoinColumn(name ="nombre_servicio" )
 	@OneToOne (cascade = CascadeType.ALL)
 	private Servicio nombreServicio;
 	
 	@Column(name ="fecha_inicio"  )
 	private Date fechaInicio;
+	
+	
 	
 	@Column(name ="fecha_finalizacion" )
 	private Date fechaFinalizacion;
@@ -38,12 +43,18 @@ public class Caso {
 	@OneToOne (cascade = CascadeType.ALL)
 	private Cliente nombreCliente;
 	
-	@JoinColumn(name ="licencia" )
-	@OneToOne(cascade = CascadeType.ALL)
+	
+	@OneToOne(fetch = FetchType.LAZY)
 	private Abogado licencia;
 	
 	@Column(name ="titulo_caso" )
 	private String titulo;
+	
+	@PrePersist
+	public void prePersist() {
+		fechaInicio = new Date();
+	}
+	
 	
 
 	

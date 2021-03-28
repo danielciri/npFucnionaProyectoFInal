@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 /**
@@ -28,10 +29,10 @@ public class Expediente {
 	private Long num_expediente;
 	
 	@Column (name = "fecha_apertura")
-	private Date fecha_apertura;
+	private Date fechaApertura;
 	
 	@Column (name = "fecha_cerrado")
-	private Date fecha_cerrado;
+	private Date fechaCerrado;
 	
 	@Column 
 	private String observacion;
@@ -40,7 +41,13 @@ public class Expediente {
 	@OneToOne (cascade = CascadeType.ALL)
 	private Caso caso;
 	
-	
+	@Column
 	private boolean estado;
+	
+	@PrePersist
+	public void prePersiste() {
+		fechaApertura = new Date();
+	}
+	
 
 }

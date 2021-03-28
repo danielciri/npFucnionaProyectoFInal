@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -24,26 +27,28 @@ public class Cita implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idCita;
 	
-	@JoinColumn(name = "licencia_abogado")
-	@OneToOne (cascade = CascadeType.ALL)
-	private Cliente nomCliente;
+	@OneToOne (fetch = FetchType.LAZY)
+	private Cliente cliente;
 	
-	@Column(name = "hora_cita")
+	@Temporal(TemporalType.TIME)
+	@Column(name = "hora_cita", unique = true)
 	private Date hora;
 	
 	@Column
 	private String asunto;
 	
 
-	@JoinColumn(name = "nombre_abogado")
-	@OneToOne (cascade = CascadeType.ALL)
-	private Abogado nomAbogado;
+	@OneToOne (fetch = FetchType.LAZY)
+	private Abogado abogado;
 	
 	@Column(name = "estado_cita")
 	private boolean estadoCita;
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name = "fecha_programada")
 	private Date fechaProgramada;
+	
+	
 	
 	
 
