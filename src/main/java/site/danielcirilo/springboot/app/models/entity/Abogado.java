@@ -1,28 +1,60 @@
 package site.danielcirilo.springboot.app.models.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table (name = "abogados")
-@PrimaryKeyJoinColumn(referencedColumnName = "documento_persona")
-public class Abogado extends Persona implements Serializable{
+@Table(name = "abogados")
+@DiscriminatorValue("abogado")
+public class Abogado extends Persona implements Serializable {
 
-	//Como es una relacion bireccional es decir ambos se corresponden, se debe colocar el mapped by
-	@OneToMany(mappedBy = "abogado",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private  List<Cita>   citas;
-	
-	@OneToMany(mappedBy = "licencia",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@Column(name = "num_licencia", unique = true)
+	private String num_licencia;
+
+	// Como es una relacion bireccional es decir ambos se corresponden, se debe
+	// colocar el mapped by
+	@OneToMany(mappedBy = "abogado", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Cita> citas;
+
+	// Como es una relacion bireccional es decir ambos se corresponden, se debe
+	// colocar el mapped by
+	@OneToMany(mappedBy = "licencia", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Caso> casos;
-	
- 
+
+	public Abogado() {
+
+	}
+
+	public Abogado(String direccion, Date fecha_nacimiento, char sexo, String nombre, String apellido, String email,
+			long telefono, String num_licencia) {
+		super(direccion, fecha_nacimiento, sexo, nombre, apellido, email, telefono);
+		this.num_licencia = num_licencia;
+
+	}
+
+	public List<Cita> getCitas() {
+		return citas;
+	}
+
+	public void setCitas(List<Cita> citas) {
+		this.citas = citas;
+	}
+
+	public List<Caso> getCasos() {
+		return casos;
+	}
+
+	public void setCasos(List<Caso> casos) {
+		this.casos = casos;
+	}
+
 }

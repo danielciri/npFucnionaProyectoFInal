@@ -1,97 +1,95 @@
 package site.danielcirilo.springboot.app.models.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-import ch.qos.logback.core.subst.Token.Type;
+import site.danielcirilo.springboot.app.models.tipoDocumento.TipoDocumento;
 
 @Entity
-@Table (name="clientes")
-@PrimaryKeyJoinColumn(referencedColumnName = "documento_persona")
-public class Cliente extends Persona implements Serializable{
+@Table(name = "clientes")
+@DiscriminatorValue("cliente")
+public class Cliente extends Persona implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
+	@Column(name = "cliente_documento", unique = true)
+	private String documentoCliente;
+
 	@Column
-	private String direccion;
-	
-	@Column
-	private char sexo;
-	
-	@Column (name = "fecha_nacimiento")
-	private Date fecha_nacimiento;
-	
-	@OneToMany(mappedBy = "cliente",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private String nacionalidad;
+
+	@Enumerated(value = EnumType.STRING)
+	TipoDocumento TipoDocumento;
+
+	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Factura> facturas;
-	
-	@OneToOne(mappedBy = "cliente",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
+	@OneToOne(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Cita cita;
-	
+
 	public Cliente() {
-		facturas = new ArrayList<>();
-	}
-	
-	
-	
-	
-	public String getDireccion() {
-		return direccion;
+
 	}
 
+	public Cliente(String direccion, Date fecha_nacimiento, char sexo, String nombre, String apellido, String email,
+			long telefono, String documentoCliente, String nacionalidad,
+			site.danielcirilo.springboot.app.models.tipoDocumento.TipoDocumento tipoDocumento) {
+		super(direccion, fecha_nacimiento, sexo, nombre, apellido, email, telefono);
+		this.documentoCliente = documentoCliente;
+		this.nacionalidad = nacionalidad;
+		TipoDocumento = tipoDocumento;
 
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
 	}
 
-
-	public char getSexo() {
-		return sexo;
+	public String getNacionalidad() {
+		return nacionalidad;
 	}
 
-
-	public void setSexo(char sexo) {
-		this.sexo = sexo;
+	public void setNacionalidad(String nacionalidad) {
+		this.nacionalidad = nacionalidad;
 	}
 
-
-	public Date getFecha_nacimiento() {
-		return fecha_nacimiento;
+	public Cita getCita() {
+		return cita;
 	}
 
-
-	public void setFecha_nacimiento(Date fecha_nacimiento) {
-		this.fecha_nacimiento = fecha_nacimiento;
+	public void setCita(Cita cita) {
+		this.cita = cita;
 	}
-
 
 	public List<Factura> getFacturas() {
 		return facturas;
 	}
 
-
 	public void setFacturas(List<Factura> facturas) {
 		this.facturas = facturas;
 	}
 
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	
+
 	public void addFactura(Factura factura) {
 		facturas.add(factura);
+	}
+
+	public TipoDocumento getTipoDocumento() {
+		return TipoDocumento;
+	}
+
+	public void setTipoDocumento(TipoDocumento tipoDocumento) {
+		TipoDocumento = tipoDocumento;
 	}
 
 }

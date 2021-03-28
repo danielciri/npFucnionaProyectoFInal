@@ -2,7 +2,6 @@ package site.danielcirilo.springboot.app.models.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,15 +12,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+
 import javax.persistence.TemporalType;
 
-
-import javassist.SerialVersionUID;
 
 /**
  * 
@@ -29,42 +27,37 @@ import javassist.SerialVersionUID;
  *
  */
 
-@Entity 
-@Table (name = "facturas")
-public class Factura implements Serializable{
-	
+@Entity
+@Table(name = "facturas")
+public class Factura implements Serializable {
+
 	private static final long SerialVersionUID = 1;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column
 	private String descripcion;
-	
-	
 
-	
 	@Temporal(TemporalType.DATE)
 	@Column
 	private Date fecha;
-	
+
 	@Column
 	private String observacion;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Cliente cliente;
-	
-	
-	@OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "factura_id")
 	private ItemFactura item;
-	
-	
+
 	@PrePersist
 	public void prePersiste() {
 		fecha = new Date();
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -108,8 +101,5 @@ public class Factura implements Serializable{
 	public static long getSerialversionuid() {
 		return SerialVersionUID;
 	}
-	
-	
-	
 
 }
