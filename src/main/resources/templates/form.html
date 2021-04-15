@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/menu :: head">
+
+</head>
+<body class="body-expanded">
+	<header th:replace="layout/menu :: header"> </header>
+<body class="body-expanded">
+	<div id="main-container">
+		<div class="row d-flex justify-content-center align-items-right">
+			<div class="contentTable">
+				<table class="">
+					<thead>
+						<tr>
+
+							<th>Nombre</th>
+							<th>Apellido</th>
+							<th>Email</th>
+							<th>Numero de telefono</th>
+							<th>Direccion</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="table-active">
+
+							<td>{this.rank}</td>
+							<td>{this.name}</td>
+							<td>{this.team}</td>
+							<td>{this.name}</td>
+							<td>{this.team}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+	</div>
+
+</body>
+</html>

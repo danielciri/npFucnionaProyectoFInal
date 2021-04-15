@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head th:fragment="head">
+      <meta charset="UTF-8">
+      <title>Side menu</title>
+      <link rel="stylesheet" th:href="@{/css/mi.css}">
+      <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+      <link rel="stylesheet"
+         href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+         
+   </head>
+   <body class="body-expanded">
+   <header th:fragment="">
+      <nav class="navbar navbar-expand-md navbar-light" id="navbar" style="background-color: #343434;">
+         <a class="navbar-brand" href="#"></a> <button aria-label="Toggle navigation" class="navbar-toggler" data-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button>
+         <div class="collapse navbar-collapse nav">
+            <ul class="navbar-nav mr-auto ulnav"></ul>
+            <ul class="navbar-nav navbar-right">
+               <li>
+                  <a class="btn btn-outline-primary">Sign In</a>
+               </li>
+               <li class="dropdown show">
+                  <a aria-expanded="false" aria-haspopup="true" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" href="#" id="dropdownMenuLink" role="button"><span></span></a>
+                  <div aria-labelledby="dropdownMenuLink" class="dropdown-menu">
+                     <form id="logoutForm" method="post" name="logoutForm">
+                        <button class="dropdown-item" type="submit">Sign Out</button> <input type="hidden">
+                     </form>
+                  </div>
+               </li>
+            </ul>
+         </div>
+      </nav>
+     
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+         <form class="form-inline my-2 my-lg-0">
+            <input aria-label="Search" class="form-control mr-sm-2" placeholder="Search" type="search"> <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+         </form>
+      </div>
+      <div class="menu-expanded" id="sidemenu">
+         <!-- HEADER -->
+         <div id="header">
+            <div id="title">
+               <span>Panel Administrador</span>
+            </div>
+            <div id="menu-btn">
+               <div class="btn-hamburger"></div>
+               <div class="btn-hamburger"></div>
+               <div class="btn-hamburger"></div>
+            </div>
+         </div>
+         <!-- PROFILE -->
+         <div id="profile">
+            <div id="photo"><img alt="" src="/icons/logo.jpg"></div>
+            <div id="name">
+               <span>Lizana Abogados & Asociados</span>
+            </div>
+         </div>
+         <!-- ITEMS -->
+         <div id="menu-items">
+            <div class="item" id="ulitem">
+               <ul class="menu">
+                  <li>
+                     <a href="#">
+                        <div class="icon"><img src="icons/home-button_icon-icons.com_72700.png"></div>
+                        <div class="title">
+                           <span>Inicio</span><i class="iconoi fa fa-chevron-right"></i>
+                        </div>
+                     </a>
+                  </li>
+                  <li>
+                     <a href="#">
+                        <div class="icon"><img alt="calendario" src="icons/calendar_alert_notification_date_appointment_icon_153130.png"></div>
+                        <div class="title">
+                           <span>Citas</span><i class="icono fa fa-chevron-down"></i>
+                        </div>
+                     </a>
+                     <ul class="interno">
+                        <li>
+                           <a href="#">Dia</a>
+                        </li>
+                        <li>
+                           <a href="#">Semana</a>
+                        </li>
+                        <li>
+                           <a href="#">Mes</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="#">
+                        <div class="icon"><img src="icons/lawyer_86132.png"></div>
+                        <div class="title">
+                           <span>Casos</span><i class="iconoc fa fa-chevron-down"></i>
+                        </div>
+                     </a>
+                     <ul class="interno">
+                        <li>
+                           <a href="#">Cerrados</a>
+                        </li>
+                        <li>
+                           <a href="#">Archivados</a>
+                        </li>
+                        <li>
+                           <a href="#">En Proceso</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="#">
+                        <div class="icon"><img src="icons/3d_documents_folder_20534.png"></div>
+                        <div class="title">
+                           <span>Documentos</span><i class="iconod fa fa-chevron-down"></i>
+                        </div>
+                     </a>
+                     <ul class="interno">
+                        <li>
+                           <a href="#">Facturas</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="#">
+                        <div class="icon"><img src="icons/dossier_78311.png"></div>
+                        <div class="title">
+                           <span>Expedientes</span><i class="iconoe fa fa-chevron-right"></i>
+                        </div>
+                     </a>
+                  </li>
+                  <li>
+                     <a href="#">
+                        <div class="icon"><img src="icons/users_clients_group_16774.png"></div>
+                        <div class="title">
+                           <span>Clientes</span><i class="iconocl fa fa-chevron-right"></i>
+                        </div>
+                     </a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+     
+      
+  	 <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+      <script src="js/main.js"></script> 
+      <script src="js/main2.js"></script> 
+      	
+		<script th:src="@{/js/popper.min.js}"></script>
+		<script th:src="@{/js/bootstrap.min.js}"></script>
+		 </header>
+	
+   </body>
+</html>

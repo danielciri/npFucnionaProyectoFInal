@@ -7,6 +7,6 @@ import org.springframework.data.repository.NoRepositoryBean;
 import site.danielcirilo.springboot.app.models.entity.Persona;
 
 @NoRepositoryBean
-public interface IPersonaRepository  extends JpaRepository<Persona, Long>{
-
+public interface IPersonaRepository <T extends Persona>  extends JpaRepository<T, Long>{
+	
 }

@@ -35,7 +35,11 @@ public class AgilizadoLegalSpringBootJpaApplication {
 
 		Date yourDate = yourDateFormat.parse(yourDateString);
 		
-		Persona cliente = new Cliente("sdas", yourDate, 's', "fasdas", "asdasd", "sadasd", 2342343, "asdasd", "asdasd", TipoDocumento.DNI);
+		String mydateString = "02/28/2012 15:00:00";
+		SimpleDateFormat mydate = new SimpleDateFormat("MM/dd/yyyy");
+
+		Date yourDateDate = mydate.parse(mydateString);
+		Persona cliente = new Cliente("La pedrera",yourDateDate,'m',"Daniel","cirilo","danie@gmail.com",680727300,"Y72680320N","veneca",TipoDocumento.NIE);
 		Persona abogado = new Abogado("asdasd", yourDate, 'd', "asdasd", "sadas", "asdsad",32432,  "asdasd");
 		
 		clienteRepository.save(cliente);

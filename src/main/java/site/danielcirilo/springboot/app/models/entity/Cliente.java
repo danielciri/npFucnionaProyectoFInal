@@ -23,7 +23,7 @@ import site.danielcirilo.springboot.app.models.tipoDocumento.TipoDocumento;
 public class Cliente extends Persona implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "cliente_documento", unique = true)
+	@Column(name = "documento_cliente")
 	private String documentoCliente;
 
 	@Column
@@ -44,12 +44,21 @@ public class Cliente extends Persona implements Serializable {
 
 	public Cliente(String direccion, Date fecha_nacimiento, char sexo, String nombre, String apellido, String email,
 			long telefono, String documentoCliente, String nacionalidad,
-			site.danielcirilo.springboot.app.models.tipoDocumento.TipoDocumento tipoDocumento) {
+			TipoDocumento tipoDocumento) {
 		super(direccion, fecha_nacimiento, sexo, nombre, apellido, email, telefono);
 		this.documentoCliente = documentoCliente;
 		this.nacionalidad = nacionalidad;
 		TipoDocumento = tipoDocumento;
 
+	}
+
+	
+	public String getDocumentoCliente() {
+		return documentoCliente;
+	}
+
+	public void setDocumentoCliente(String documentoCliente) {
+		this.documentoCliente = documentoCliente;
 	}
 
 	public String getNacionalidad() {
