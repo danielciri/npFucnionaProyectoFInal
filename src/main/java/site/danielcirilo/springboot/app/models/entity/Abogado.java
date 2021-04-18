@@ -42,9 +42,9 @@ public class Abogado extends Persona implements Serializable {
 
 	}
 
-	public Abogado(String direccion, Date fecha_nacimiento, String nombre, String apellido, String email,
+	public Abogado(Long id,String direccion, Date fecha_nacimiento, String nombre, String apellido, String email,
 			long telefono, String num_licencia) {
-		super(direccion, fecha_nacimiento,  nombre, apellido, email, telefono);
+		super(id,direccion, fecha_nacimiento,  nombre, apellido, email, telefono);
 		this.num_licencia = num_licencia;
 
 	}

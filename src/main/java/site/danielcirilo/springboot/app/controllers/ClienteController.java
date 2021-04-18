@@ -1,8 +1,6 @@
 package site.danielcirilo.springboot.app.controllers;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.lang.ProcessBuilder.Redirect;
 
 import javax.validation.Valid;
 
@@ -11,11 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import site.danielcirilo.springboot.app.models.entity.Cliente;
 import site.danielcirilo.springboot.app.models.services.IClienteService;
@@ -59,10 +56,25 @@ public class ClienteController {
 			model.addAttribute("titulo", "Alta nuevo cliente");
 			return "form";
 		} else {
+	
 			clienteService.save(cliente);
 			return "redirect:menu";
 		}
 
+	}
+	
+	@RequestMapping(value = "/form/{id}")
+	public String editar(@PathVariable(value = "id") Long id,Model model,RedirectAttributes flash) {
+		Cliente cliente = null;
+		if(id >0) {
+			cliente = clienteService.findOne(id);
+		}else {
+			return "redirect:menu";
+		}
+		model.addAttribute("cliente", cliente);
+		model.addAttribute("titulo", "Editar Cliente");
+		return "form";
+	
 	}
 
 }

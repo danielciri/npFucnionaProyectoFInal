@@ -11,12 +11,15 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.springframework.context.annotation.Primary;
 
 import site.danielcirilo.springboot.app.models.tipoDocumento.TipoDocumento;
 
@@ -26,8 +29,8 @@ import site.danielcirilo.springboot.app.models.tipoDocumento.TipoDocumento;
 public class Cliente extends Persona implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "documento_cliente")
 
+	@Column(name = "documento_cliente")
 	private String documentoCliente;
 	
 	@Column
@@ -49,14 +52,28 @@ public class Cliente extends Persona implements Serializable {
 
 	}
 
-	public Cliente(String direccion, Date fecha_nacimiento, String nombre, String apellido, String email, long telefono,
-			String documentoCliente, String nacionalidad, TipoDocumento tipoDocumento) {
-		super(direccion, fecha_nacimiento, nombre, apellido, email, telefono);
+	
+
+
+
+
+
+
+
+
+
+	public Cliente(Long id, String direccion, Date fecha_nacimiento, String nombre, String apellido, String email,
+			long telefono, String documentoCliente, @NotEmpty @Size(min = 4) String nacionalidad,
+			@NotNull TipoDocumento tipoDocumento, List<Factura> facturas, Cita cita) {
+		super(id, direccion, fecha_nacimiento, nombre, apellido, email, telefono);
 		this.documentoCliente = documentoCliente;
 		this.nacionalidad = nacionalidad;
 		this.tipoDocumento = tipoDocumento;
-	
+		this.facturas = facturas;
+		this.cita = cita;
 	}
+
+
 
 	public String getDocumentoCliente() {
 		return documentoCliente;

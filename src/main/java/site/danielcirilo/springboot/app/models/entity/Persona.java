@@ -67,16 +67,20 @@ public abstract class Persona implements Serializable {
 	@NotNull
 	protected long telefono;
 
-	public Persona(String direccion, Date fecha_nacimiento, String nombre, String apellido, String email,
+	public Persona(Long id ,String direccion, Date fecha_nacimiento, String nombre, String apellido, String email,
 			long telefono) {
 		this.direccion = direccion;
 		this.fecha_nacimiento = fecha_nacimiento;
-
+		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.email = email;
 		this.telefono = telefono;
 	}
+
+	
+
+
 
 	public Persona() {
 

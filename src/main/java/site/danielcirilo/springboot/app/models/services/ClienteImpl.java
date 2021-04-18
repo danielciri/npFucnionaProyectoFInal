@@ -32,7 +32,7 @@ public class ClienteImpl implements IClienteService{
 	@Override
 	@Transactional
 	public Cliente findOne(Long id) {
-		// TODO Auto-generated method stub
+		
 		return clienteRepo.findById(id).orElse(null);
 	}
 
