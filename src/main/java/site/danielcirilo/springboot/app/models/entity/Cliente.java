@@ -14,6 +14,9 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import site.danielcirilo.springboot.app.models.tipoDocumento.TipoDocumento;
 
@@ -24,13 +27,17 @@ public class Cliente extends Persona implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Column(name = "documento_cliente")
-	private String documentoCliente;
 
+	private String documentoCliente;
+	
 	@Column
+	@NotEmpty
+	@Size(min = 4)
 	private String nacionalidad;
 
 	@Enumerated(value = EnumType.STRING)
-	TipoDocumento TipoDocumento;
+	@NotNull
+	private TipoDocumento tipoDocumento;
 
 	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Factura> facturas;
@@ -42,17 +49,15 @@ public class Cliente extends Persona implements Serializable {
 
 	}
 
-	public Cliente(String direccion, Date fecha_nacimiento, char sexo, String nombre, String apellido, String email,
-			long telefono, String documentoCliente, String nacionalidad,
-			TipoDocumento tipoDocumento) {
-		super(direccion, fecha_nacimiento, sexo, nombre, apellido, email, telefono);
+	public Cliente(String direccion, Date fecha_nacimiento, String nombre, String apellido, String email, long telefono,
+			String documentoCliente, String nacionalidad, TipoDocumento tipoDocumento) {
+		super(direccion, fecha_nacimiento, nombre, apellido, email, telefono);
 		this.documentoCliente = documentoCliente;
 		this.nacionalidad = nacionalidad;
-		TipoDocumento = tipoDocumento;
-
+		this.tipoDocumento = tipoDocumento;
+	
 	}
 
-	
 	public String getDocumentoCliente() {
 		return documentoCliente;
 	}
@@ -94,11 +99,13 @@ public class Cliente extends Persona implements Serializable {
 	}
 
 	public TipoDocumento getTipoDocumento() {
-		return TipoDocumento;
+		return tipoDocumento;
 	}
 
 	public void setTipoDocumento(TipoDocumento tipoDocumento) {
-		TipoDocumento = tipoDocumento;
+		this.tipoDocumento = tipoDocumento;
 	}
+
+
 
 }

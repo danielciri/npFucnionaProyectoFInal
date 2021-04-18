@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 /**
  * 
@@ -28,22 +30,26 @@ public class Caso {
 
 	@JoinColumn(name = "nombre_servicio")
 	@OneToOne(cascade = CascadeType.ALL)
+	@NotNull
 	private Servicio nombreServicio;
 
 	@Column(name = "fecha_inicio")
 	private Date fechaInicio;
 
 	@Column(name = "fecha_finalizacion")
+	
 	private Date fechaFinalizacion;
 
 	@JoinColumn(name = "nombre_cliente")
 	@OneToOne(cascade = CascadeType.ALL)
+	@NotNull
 	private Cliente nombreCliente;
 
 	@OneToOne(fetch = FetchType.LAZY)
 	private Abogado licencia;
 
 	@Column(name = "titulo_caso")
+	@NotEmpty
 	private String titulo;
 
 	@PrePersist

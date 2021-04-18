@@ -15,6 +15,14 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity
 @Table(name = "personas")
@@ -22,34 +30,48 @@ import javax.persistence.TemporalType;
 @DiscriminatorColumn(name = "tipo_persona", discriminatorType = DiscriminatorType.STRING)
 public abstract class Persona implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Long id;
 
 	@Column
+	@NotEmpty
 	protected String direccion;
+
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "fecha_nacimiento")
+	@NotNull
+	@Past
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fecha_nacimiento;
 
 	@Column
-	protected char sexo;
-
-	@Column
+	@NotEmpty
+	@Size(min = 4, max = 30)
 	protected String nombre;
 	@Column
+	@NotEmpty
+	@Size(min = 4, max = 30)
 	protected String apellido;
 	@Column
+	@NotEmpty
+	@Email
 	protected String email;
 	@Column
+	@NotNull
 	protected long telefono;
 
-	public Persona(String direccion, Date fecha_nacimiento, char sexo, String nombre, String apellido, String email,
+	public Persona(String direccion, Date fecha_nacimiento, String nombre, String apellido, String email,
 			long telefono) {
 		this.direccion = direccion;
 		this.fecha_nacimiento = fecha_nacimiento;
-		this.sexo = sexo;
+
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.email = email;
@@ -82,14 +104,6 @@ public abstract class Persona implements Serializable {
 
 	public void setFecha_nacimiento(Date fecha_nacimiento) {
 		this.fecha_nacimiento = fecha_nacimiento;
-	}
-
-	public char getSexo() {
-		return sexo;
-	}
-
-	public void setSexo(char sexo) {
-		this.sexo = sexo;
 	}
 
 	public String getNombre() {

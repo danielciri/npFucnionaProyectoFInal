@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/menu :: head">
+
+</head>
+<body class="body-expanded">
+	<header th:replace="layout/menu :: header"> </header>
+<body class="body-expanded">
+
+
+
+
+	<div id="cliente-listar">
+
+
+		<h1 class="titleMain">Listado Clientes</h1>
+
+
+		<div class="card bg-light card-clientes">
+			<div class="input-group busqueda-cliente">
+				<input type="search" class="form-control rounded"
+					placeholder="Buscar Cliente" aria-label="Search"
+					aria-describedby="search-addon" />
+				<button type="button" class="btn btn-primary">
+					<i class="fa fa-search"></i>
+				</button>
+			</div>
+			<button type="button" class="btn btn-primary btn-registro-cliente"><small>
+				Registrar Cliente</small></button>
+			<div class="card-body">
+
+				<table>
+					<thead>
+						<tr>
+							<th><small>Nombre</small></th>
+							<th><small>Apellido</small></th>
+							<th><small>Fecha Nacimiento</small></th>
+							<th><small>Nacionalidad</small></th>
+							<th><small>Direccion</small></th>
+							<th><small>Numero Telefono</small></th>
+							<th><small>Email</small></th>
+							<th><small>Tipo Documento</small></th>
+							<th><small>Numero Documento</small></th>
+							<th><small>Accion </small></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="cliente: ${clientes}">
+							<td th:text="${cliente.id}"></td>
+							<td th:text="${cliente.nombre}"></td>
+							<td th:text="${cliente.apellido}"></td>
+							<td th:text="${cliente.email}"></td>
+							<td th:text="${cliente.createAt}"></td>
+							<td><a class="btn btn-primary btn-sm"
+								th:href="@{/form/} + ${cliente.id}" th:text="'editar'"></a></td>
+							<td>
+						</tr>
+
+						<tr>
+							<td><small>Daniel Alejandro/</small></td>
+							<td><small>Cirilo Lucena</small></td>
+							<td><small>07/07/2001</small></td>
+							<td><small>Venezolana</small></td>
+							<td><small>Denia, la pedrera calle artemis casa 28</small></td>
+
+							<td><small>680 727 300</small></td>
+							<td><small>dadsad2gmaio.com</small></td>
+							<td><small>Pasaporte</small></td>
+							<td><small>Y726820N</small></td>
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+	</div>
+
+
+
+</body>
+</html>
+

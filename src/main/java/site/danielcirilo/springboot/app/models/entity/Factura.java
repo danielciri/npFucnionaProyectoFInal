@@ -31,6 +31,10 @@ import javax.persistence.TemporalType;
 @Table(name = "facturas")
 public class Factura implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static final long SerialVersionUID = 1;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

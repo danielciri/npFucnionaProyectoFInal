@@ -17,6 +17,7 @@
 
 
 		<div class="card bg-light card-clientes">
+
 			<div class="input-group busqueda-cliente">
 				<input type="search" class="form-control rounded"
 					placeholder="Buscar Cliente" aria-label="Search"
@@ -24,9 +25,17 @@
 				<button type="button" class="btn btn-primary">
 					<i class="fa fa-search"></i>
 				</button>
+
 			</div>
-			<button type="button" class="btn btn-primary btn-registro-cliente"><small>
-				Registrar Cliente</small></button>
+			<div class="row align-items-center">
+				<div class="col-4 align-self-start">
+					<a th:href="@{/form}"> <button type="button" class="btn btn-primary  btn-registro-cliente" >
+						
+						Registrar
+					</button></a>
+				</div>
+
+			</div>
 			<div class="card-body">
 
 				<table>
@@ -46,11 +55,15 @@
 					</thead>
 					<tbody>
 						<tr th:each="cliente: ${clientes}">
-							<td th:text="${cliente.id}"></td>
-							<td th:text="${cliente.nombre}"></td>
+							<td th:text="${cliente.nombre}"> </td>
 							<td th:text="${cliente.apellido}"></td>
+							<td th:text="${cliente.fecha_nacimiento}"></td>
+							<td th:text="${cliente.nacionalidad}"></td>
+							<td th:text="${cliente.direccion}"></td>
+							<td th:text="${cliente.telefono}"></td>
 							<td th:text="${cliente.email}"></td>
-							<td th:text="${cliente.createAt}"></td>
+							<td th:text="${cliente.tipoDocumento}"></td>
+							<td th:text="${cliente.documentoCliente}"></td>
 							<td><a class="btn btn-primary btn-sm"
 								th:href="@{/form/} + ${cliente.id}" th:text="'editar'"></a></td>
 							<td>

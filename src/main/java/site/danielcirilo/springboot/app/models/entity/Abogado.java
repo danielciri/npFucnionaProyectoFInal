@@ -11,13 +11,21 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "abogados")
 @DiscriminatorValue("abogado")
 public class Abogado extends Persona implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	
 	@Column(name = "num_licencia", unique = true)
+	@NotEmpty
 	private String num_licencia;
 
 	// Como es una relacion bireccional es decir ambos se corresponden, se debe
@@ -34,9 +42,9 @@ public class Abogado extends Persona implements Serializable {
 
 	}
 
-	public Abogado(String direccion, Date fecha_nacimiento, char sexo, String nombre, String apellido, String email,
+	public Abogado(String direccion, Date fecha_nacimiento, String nombre, String apellido, String email,
 			long telefono, String num_licencia) {
-		super(direccion, fecha_nacimiento, sexo, nombre, apellido, email, telefono);
+		super(direccion, fecha_nacimiento,  nombre, apellido, email, telefono);
 		this.num_licencia = num_licencia;
 
 	}

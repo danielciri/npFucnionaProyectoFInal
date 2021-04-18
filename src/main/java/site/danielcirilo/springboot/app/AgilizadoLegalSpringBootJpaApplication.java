@@ -16,34 +16,14 @@ import site.danielcirilo.springboot.app.models.repository.IAbogadoRepository;
 import site.danielcirilo.springboot.app.models.repository.IClienteRepository;
 import site.danielcirilo.springboot.app.models.repository.IPersonaRepository;
 import site.danielcirilo.springboot.app.models.tipoDocumento.TipoDocumento;
+import site.danielcirilo.springboot.app.utils.Lib;
 
 @SpringBootApplication
 public class AgilizadoLegalSpringBootJpaApplication {
 
 	public static void main(String[] args) throws ParseException {
-		ConfigurableApplicationContext configurableApplicationContext = SpringApplication.run(AgilizadoLegalSpringBootJpaApplication.class, args);
+		SpringApplication.run(AgilizadoLegalSpringBootJpaApplication.class, args);
 		
-		IPersonaRepository clienteRepository = configurableApplicationContext.getBean(IClienteRepository.class);
-		IPersonaRepository abogadoRepository = configurableApplicationContext.getBean(IAbogadoRepository.class);
-		
-		String currentDateString = "02/27/2012 17:00:00";
-		SimpleDateFormat sd = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-		Date currentDate = sd.parse(currentDateString);
-
-		String yourDateString = "02/28/2012 15:00:00";
-		SimpleDateFormat yourDateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-
-		Date yourDate = yourDateFormat.parse(yourDateString);
-		
-		String mydateString = "02/28/2012 15:00:00";
-		SimpleDateFormat mydate = new SimpleDateFormat("MM/dd/yyyy");
-
-		Date yourDateDate = mydate.parse(mydateString);
-		Persona cliente = new Cliente("La pedrera",yourDateDate,'m',"Daniel","cirilo","danie@gmail.com",680727300,"Y72680320N","veneca",TipoDocumento.NIE);
-		Persona abogado = new Abogado("asdasd", yourDate, 'd', "asdasd", "sadas", "asdsad",32432,  "asdasd");
-		
-		clienteRepository.save(cliente);
-		abogadoRepository.save(abogado);
 		
 		
 	}
