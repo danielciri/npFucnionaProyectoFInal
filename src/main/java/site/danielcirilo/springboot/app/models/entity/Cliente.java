@@ -31,6 +31,7 @@ public class Cliente extends Persona implements Serializable {
 
 
 	@Column(name = "documento_cliente")
+	@Size(max = 9,min = 9)
 	private String documentoCliente;
 	
 	@Column

@@ -2,40 +2,148 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout/menu :: head">
 
+
 </head>
 <body class="body-expanded">
 	<header th:replace="layout/menu :: header"> </header>
-<body class="body-expanded">
-	<div id="main-container">
-		<div class="row d-flex justify-content-center align-items-right">
-			<div class="contentTable">
-				<table class="">
-					<thead>
-						<tr>
+	<h1 class="titleFormulario" th:text="${titulo}"></h1>
 
-							<th>Nombre</th>
-							<th>Apellido</th>
-							<th>Email</th>
-							<th>Numero de telefono</th>
-							<th>Direccion</th>
+	<div class="row mt-5" id="jumbo-ventas">
 
-						</tr>
-					</thead>
-					<tbody>
-						<tr class="table-active">
+		<div
+			class="col-md-7 animate__animated animate__zoomIn daniel rounded border border-info p-4">
 
-							<td>{this.rank}</td>
-							<td>{this.name}</td>
-							<td>{this.team}</td>
-							<td>{this.name}</td>
-							<td>{this.team}</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+			<form id="forma" th:action="@{/form}" method="post"
+				th:object="${cliente}">
+				<div class="row">
+					<div class="col col-name">
+						<label for="nombre">Nombre</label> <input type="text"
+							class="form-control" placeholder="Nombres" th:field="*{nombre}"
+							th:errorClass="'form-control alert-danger'"> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+
+					</div>
+					<div class="col col-name">
+						<label for="apellido">Apellido</label> <input type="text"
+							class="form-control" placeholder="Apellidos"
+							th:field="*{apellido}"
+							th:errorClass="'form-control alert-danger'"> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></small>
+
+					</div>
+
+
+				</div>
+				<div class="row">
+					<div class="col">
+						<label for="fechaNac">Fecha de nacimiento</label> <input
+							type="date" class="form-control"
+							th:errorClass="'form-control alert-danger'"
+							placeholder="Fecha Nacimiento" th:field="*{fecha_nacimiento}">
+						<small class="form-text text-danger"
+							th:if="${#fields.hasErrors('fecha_nacimiento')}"
+							th:errors="*{fecha_nacimiento}"></small>
+
+					</div>
+					<div class="col">
+
+						<label for="nacionalidad">Nacionalidad</label> <input type="text"
+							class="form-control" placeholder="Nacionalidad"
+							th:field="*{nacionalidad}"
+							th:errorClass="'form-control alert-danger'"> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('nacionalidad')}"
+							th:erros="*{nacionalidad}"></small>
+					</div>
+
+
+
+				</div>
+				<div class="row">
+					<div class="col">
+
+						<label for="tipoDoc">Tipo de documento</label> <select
+							class="form-control" th:errorClass="'form-control alert-danger'"
+							th:field="*{tipoDocumento}">
+							<option value="">--Seleccionar--</option>
+							<option th:each="tipoDocumento: ${TipoDocumento}"
+								th:text="${tipoDocumento}" th:value="${tipoDocumento}"></option>
+						</select> <small class="form-text text-danger"
+							th:if="${#fields.hasErrors('tipoDocumento')}"
+							th:errors="*{tipoDocumento}"></small>
+
+					</div>
+					<div class="col ">
+
+						<label for="numeroDoc">Numero de documento</label> <input
+							type="text" class="form-control"
+							placeholder="Numero del documento"
+							th:errorClass="'form-control alert-danger'"
+							th:field="*{documentoCliente}"> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('documentoCliente')}"
+							th:errors="*{documentoCliente}"></small>
+
+					</div>
+
+
+
+
+
+				</div>
+				<div class="row">
+					<div class="col">
+
+						<label for="email">Email</label> <input type="text"
+							class="form-control" th:errorClass="'form-control alert-danger'"
+							placeholder="Email" th:field="*{email}"> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+
+					</div>
+					<div class="col">
+
+						<label for="numeroPhone">Numero de telefono</label> <input
+							type="text" class="form-control"
+							th:errorClass="'form-control alert-danger'"
+							placeholder="Numero de telefono" th:field="*{telefono}">
+						<small class="form-text text-danger"
+							th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></small>
+
+					</div>
+
+
+				</div>
+
+				<div class="row">
+					<div class="col">
+
+						<label for="direccion">Direccion</label> <input type="text"
+							class="form-control" th:errorClass="'form-control alert-danger'"
+							placeholder="Direccion" th:field="*{direccion}"> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('direccion')}"
+							th:errors="*{direccion}"></small>
+
+					</div>
+				</div>
+				<br></br>
+				<button type="submit" class="btn btn-primary btn-register"
+					id="submit">Guardar nuevo cliente</button>
+						<input type="hidden" th:field="*{id}"/>
+			</form>
 
 		</div>
+
 	</div>
 
+
+
+
+
+
 </body>
+
 </html>

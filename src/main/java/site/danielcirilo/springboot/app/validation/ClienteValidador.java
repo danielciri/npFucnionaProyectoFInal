@@ -23,39 +23,45 @@ public class ClienteValidador implements Validator {
 			ValidationUtils.rejectIfEmpty(errors, "documentoCliente", "NotEmpty.cliente.documentoCliente");
 
 		}
+		
 
 		else {
-			switch (cliente.getTipoDocumento()) {
-			case DNI:
-				if (cliente.getDocumentoCliente().length() < 9) {
-					ValidationUtils.rejectIfEmpty(errors, "documentoCliente", "NotEmpty.cliente.documentoCliente");
-				} else {
-					String dni = Lib.calcularletraDni(cliente.getDocumentoCliente());
-					if (!cliente.getDocumentoCliente().matches(dni)) {
-						errors.rejectValue("documentoCliente", "daniel.usuario.identificador");
+			if(cliente.getTipoDocumento()==null) {
+				ValidationUtils.rejectIfEmpty(errors, "tipoDocumento", "NotNull.cliente.tipoDocumento");
+			}else {
+				switch (cliente.getTipoDocumento()) {
+				case DNI:
+					if (cliente.getDocumentoCliente().length() < 9 ) {
+						ValidationUtils.rejectIfEmpty(errors, "documentoCliente", "NotEmpty.cliente.documentoCliente");
+					} else {
+						String dni = Lib.calcularletraDni(cliente.getDocumentoCliente());
+						if (!cliente.getDocumentoCliente().matches(dni)  || Character.isLetter(dni.charAt(0)) == true) {
+							errors.rejectValue("documentoCliente", "daniel.usuario.identificador");
+
+						}
 
 					}
 
-				}
+					break;
 
-				break;
-
-			case NIE:
-				String nie = cliente.getDocumentoCliente();
-				if (Character.isLetter(nie.charAt(0)) == false || nie.length() < 9) {
-					errors.rejectValue("documentoCliente", "nie.usuario.identificador");
-				} else {
-					Lib.calculaNie(nie);
-					if (!cliente.getDocumentoCliente().matches(nie)) {
+				case NIE:
+					String nie = cliente.getDocumentoCliente();
+					if (Character.isLetter(nie.charAt(0)) == false || nie.length() < 9) {
 						errors.rejectValue("documentoCliente", "nie.usuario.identificador");
+					} else {
+						Lib.calculaNie(nie);
+						if (!cliente.getDocumentoCliente().matches(nie)) {
+							errors.rejectValue("documentoCliente", "nie.usuario.identificador");
+						}
 					}
+
+					break;
+
+				default:
+					break;
 				}
-
-				break;
-
-			default:
-				break;
 			}
+			
 		}
 	}
 }

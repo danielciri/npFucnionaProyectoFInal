@@ -1,0 +1,4 @@
+1) Aparte del documento debo tambien, tener un power pint?
+2) A que se refiere con las soluciones adoptadas.(2.1. Descripción técnica)
+3) Funcionamiento o desarrollo del sistema
+3) Cual es la diferencia ente los diagramas que se colocan entre el apartado de memoria explicativa y EL APARTADO QUE DICE PLANOS DIAGRAMAS Y ESQUEMAS.
