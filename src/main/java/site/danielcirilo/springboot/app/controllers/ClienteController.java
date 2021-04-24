@@ -27,7 +27,7 @@ public class ClienteController {
 	@Autowired
 	private ClienteValidador validador;
 
-	@RequestMapping(value = "menu")
+	@RequestMapping(value = "listadoClientes")
 	public String listar(Model model) {
 		model.addAttribute("titulo", "Listado de clientes");
 		model.addAttribute("clientes", clienteService.findAll());
@@ -63,7 +63,7 @@ public class ClienteController {
 		} else {
 	
 			clienteService.save(cliente);
-			return "redirect:menu";
+			return "redirect:listadoClientes";
 		}
 
 	}
@@ -74,7 +74,7 @@ public class ClienteController {
 		if(id >0) {
 			cliente = clienteService.findOne(id);
 		}else {
-			return "redirect:menu";
+			return "redirect:listadoClientes";
 		}
 		model.addAttribute("cliente", cliente);
 		model.addAttribute("titulo", "Editar Cliente");

@@ -1,5 +1,8 @@
 package site.danielcirilo.springboot.app.models.services;
 
+
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +38,32 @@ public class CitaImpl implements ICitaService{
 
 	@Override
 	public void delete(Long id) {
+
 		citaRepo.deleteById(id);
 		
 	}
+
+	@Override
+	public List<Cita> citasDia() {
+	
+		return citaRepo.citasDia(new Date(System.currentTimeMillis()));
+	}
+
+	@Override
+	public List<Cita> citasMes() {
+	
+		return citaRepo.citasMes( );
+	}
+
+	@Override
+	public List<Cita> citaSemana() {
+		// TODO Auto-generated method stub
+		return citaRepo.citasMes();
+	}
+
+
+
+	
 
 
 }

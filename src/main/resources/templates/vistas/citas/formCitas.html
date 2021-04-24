@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout/menu :: head">
-
+<link rel="stylesheet" th:href="@{/css/mi.css}">
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
 </head>
 <body class="body-expanded">
@@ -21,15 +24,20 @@
 						<label for="cliente">Cliente</label> <select class="form-control"
 							th:errorClass="'form-control alert-danger'" th:field="*{cliente}">
 							<option value="">--Seleccionar--</option>
-							<option th:each="cliente: ${listaClientes}"	th:text="${cliente.nombre}" th:value="${cliente.id}"></option>
-						</select> <small class="form-text text-danger"></small>
+							<option th:each="cliente: ${listaClientes}"
+								th:text="${cliente.nombre}" th:value="${cliente.id}"></option>
+						</select> <small class="form-text text-danger"
+							th:if="${#fields.hasErrors('cliente')}"
+							th:errors="*{cliente}"></small>
 
 					</div>
-					<div class="col col-name">
-						<label for="apellido">Hora</label> <input type="time"
-							id="fechaInicio" class="form-control" >
-
-
+					<div class="col">
+						<label for="horacita">hora</label> <input id="fechaInicio"
+							class="form-control" th:errorClass="'form-control alert-danger'"
+							placeholder="Hora Cita" th:field="*{hora}">
+					<small class="form-text text-danger"
+							th:if="${#fields.hasErrors('hora')}"
+							th:errors="*{hora}"></small>
 
 					</div>
 
@@ -37,18 +45,22 @@
 				</div>
 				<div class="row">
 					<div class="col">
-						<label for="fechaNac">Fecha Cita</label> <input type="date"
+						<label for="fechaCita">Fecha Cita</label> <input type="date"
 							class="form-control" th:errorClass="'form-control alert-danger'"
 							placeholder="Fecha Programada" th:field="*{fechaProgramada}">
-						<small class="form-text text-danger"></small>
+						<small class="form-text text-danger"
+							th:if="${#fields.hasErrors('fechaProgramada')}"
+							th:errors="*{fechaProgramada}"></small>
 
 					</div>
 					<div class="col">
 
-						<label for="nacionalidad">Asunto</label> <input type="text"
+						<label for="asunCita">Asunto</label> <input type="text"
 							class="form-control" placeholder="Asunto Cita"
 							th:field="*{asunto}" th:errorClass="'form-control alert-danger'">
-						<small class="form-text text-danger"></small>
+						<small class="form-text text-danger"
+							th:if="${#fields.hasErrors('asunto')}"
+							th:errors="*{asunto}"></small>
 					</div>
 
 
@@ -59,19 +71,26 @@
 
 				<br></br>
 				<button type="submit" class="btn btn-primary btn-register"
-					id="submit">Guardar nuevo cliente</button>
+					id="submit">Guardar nueva cita</button>
 				<input type="hidden" th:field="*{idCita}" />
 			</form>
 
 		</div>
 
 	</div>
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<!-- jQuery timepicker library -->
-<link rel="stylesheet" href="jquery-timepicker/jquery.timepicker.min.css">
-<script src="jquery-timepicker/jquery.timepicker.min.js"></script>
-		<script th:src="@{/js/hora.js}"></script>
+	
+	<script th:src="@{/js/hora.js}"></script>
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css" />
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js"></script>
 </body>
 </html>

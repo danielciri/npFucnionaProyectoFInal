@@ -2,6 +2,7 @@ package site.danielcirilo.springboot.app.models.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,9 +18,12 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -35,14 +39,19 @@ public class Cita implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idCita;
 
+	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Cliente cliente;
 
+	
+	@DateTimeFormat(pattern = "HH:mm:ss")
 	@Temporal(TemporalType.TIME)
-	@Column(name = "hora_cita", unique = true)
+	@NotNull
+	@Column(name = "hora")
 	private Date hora;
 
 	@Column
+	@NotEmpty
 	private String asunto;
 
 	/*
@@ -51,11 +60,9 @@ public class Cita implements Serializable {
 	*/
 
 
-
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Temporal(TemporalType.DATE)
+	@NotNull
 	@Column(name = "fecha_programada")
-	private Date fechaProgramada;
+	private java.sql.Date fechaProgramada;
 
 	public Long getIdCita() {
 		return idCita;
@@ -90,12 +97,19 @@ public class Cita implements Serializable {
 	}
 
 
-	public Date getFechaProgramada() {
+	public java.sql.Date getFechaProgramada() {
 		return fechaProgramada;
 	}
 
-	public void setFechaProgramada(Date fechaProgramada) {
+	public void setFechaProgramada(java.sql.Date fechaProgramada) {
 		this.fechaProgramada = fechaProgramada;
 	}
+
+	@Override
+	public String toString() {
+		return "Cita [idCita=" + idCita + ", cliente=" + cliente + ", hora=" + hora + ", asunto=" + asunto
+				+ ", fechaProgramada=" + fechaProgramada + "]";
+	}
+	
 
 }

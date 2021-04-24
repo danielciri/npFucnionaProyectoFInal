@@ -7,7 +7,7 @@
       <link rel="stylesheet" th:href="@{/css/mi.css}">
       <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
       <link rel="stylesheet"
-         href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        th:href="@{https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css}">
          
    </head>
    <body class="body-expanded">
@@ -61,8 +61,8 @@
             <div class="item" id="ulitem">
                <ul class="menu">
                   <li>
-                     <a href="#">
-                        <div class="icon"><img src="icons/home-button_icon-icons.com_72700.png"></div>
+                     <a th:href="@{/index}">
+                        <div class="icon"><img th:src="@{/icons/home-button_icon-icons.com_72700.png}"></div>
                         <div class="title">
                            <span>Inicio</span><i class="iconoi fa fa-chevron-right"></i>
                         </div>
@@ -70,26 +70,29 @@
                   </li>
                   <li>
                      <a href="#">
-                        <div class="icon"><img alt="calendario" src="icons/calendar_alert_notification_date_appointment_icon_153130.png"></div>
+                        <div class="icon"><img alt="calendario" th:src="@{/icons/calendar_alert_notification_date_appointment_icon_153130.png}"></div>
                         <div class="title">
                            <span>Citas</span><i class="icono fa fa-chevron-down"></i>
                         </div>
                      </a>
                      <ul class="interno">
                         <li>
-                           <a href="#">Dia</a>
+                           <a th:href="@{/listaDias}" >Dia</a>
                         </li>
                         <li>
-                           <a href="#">Semana</a>
+                           <a th:href="@{/listaSemana}" >Semana</a>
                         </li>
                         <li>
-                           <a href="#">Mes</a>
+                           <a th:href="@{/listaMes}" >Mes</a>
+                        </li>
+                        <li>
+                           <a th:href="@{/listaCitas}" >Todas las citas</a>
                         </li>
                      </ul>
                   </li>
                   <li>
                      <a href="#">
-                        <div class="icon"><img src="icons/lawyer_86132.png"></div>
+                        <div class="icon"><img th:src="@{/icons/lawyer_86132.png}"></div>
                         <div class="title">
                            <span>Casos</span><i class="iconoc fa fa-chevron-down"></i>
                         </div>
@@ -108,7 +111,7 @@
                   </li>
                   <li>
                      <a href="#">
-                        <div class="icon"><img src="icons/3d_documents_folder_20534.png"></div>
+                        <div class="icon"><img th:src="@{/icons/3d_documents_folder_20534.png}"></div>
                         <div class="title">
                            <span>Documentos</span><i class="iconod fa fa-chevron-down"></i>
                         </div>
@@ -121,7 +124,7 @@
                   </li>
                   <li>
                      <a href="#">
-                        <div class="icon"><img src="icons/dossier_78311.png"></div>
+                        <div class="icon"><img th:src="@{/icons/dossier_78311.png}"></div>
                         <div class="title">
                            <span>Expedientes</span><i class="iconoe fa fa-chevron-right"></i>
                         </div>
@@ -129,7 +132,7 @@
                   </li>
                   <li>
                      <a href="#">
-                        <div class="icon"><img src="icons/users_clients_group_16774.png"></div>
+                        <div class="icon"><img th:src="@{/icons/users_clients_group_16774.png}"></div>
                         <div class="title">
                            <span>Clientes</span><i class="iconocl fa fa-chevron-right"></i>
                         </div>
@@ -142,8 +145,8 @@
      
       
   	 <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
-      <script src="js/main.js"></script> 
-      <script src="js/main2.js"></script> 
+      <script th:src="@{/js/main.js}"></script> 
+      <script th:src="@{/js/main2.js}"></script> 
       	
 		<script th:src="@{/js/popper.min.js}"></script>
 		<script th:src="@{/js/bootstrap.min.js}"></script>
