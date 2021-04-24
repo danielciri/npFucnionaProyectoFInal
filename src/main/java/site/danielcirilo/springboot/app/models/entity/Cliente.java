@@ -46,8 +46,8 @@ public class Cliente extends Persona implements Serializable {
 	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Factura> facturas;
 
-	@OneToOne(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Cita cita;
+	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Cita> citas;
 
 	public Cliente() {
 
@@ -65,13 +65,13 @@ public class Cliente extends Persona implements Serializable {
 
 	public Cliente(Long id, String direccion, Date fecha_nacimiento, String nombre, String apellido, String email,
 			long telefono, String documentoCliente, @NotEmpty @Size(min = 4) String nacionalidad,
-			@NotNull TipoDocumento tipoDocumento, List<Factura> facturas, Cita cita) {
+			@NotNull TipoDocumento tipoDocumento, List<Factura> facturas, List<Cita> citas) {
 		super(id, direccion, fecha_nacimiento, nombre, apellido, email, telefono);
 		this.documentoCliente = documentoCliente;
 		this.nacionalidad = nacionalidad;
 		this.tipoDocumento = tipoDocumento;
 		this.facturas = facturas;
-		this.cita = cita;
+		this.citas = citas;
 	}
 
 
@@ -92,13 +92,35 @@ public class Cliente extends Persona implements Serializable {
 		this.nacionalidad = nacionalidad;
 	}
 
-	public Cita getCita() {
-		return cita;
+
+
+	public List<Cita> getCitas() {
+		return citas;
 	}
 
-	public void setCita(Cita cita) {
-		this.cita = cita;
+
+
+
+
+
+
+
+
+
+
+	public void setCitas(List<Cita> citas) {
+		this.citas = citas;
 	}
+
+
+
+
+
+
+
+
+
+
 
 	public List<Factura> getFacturas() {
 		return facturas;

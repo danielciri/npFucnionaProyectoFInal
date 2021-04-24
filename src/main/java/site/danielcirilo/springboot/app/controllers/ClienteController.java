@@ -1,6 +1,6 @@
 package site.danielcirilo.springboot.app.controllers;
 
-import java.lang.ProcessBuilder.Redirect;
+
 
 import javax.validation.Valid;
 
@@ -34,7 +34,12 @@ public class ClienteController {
 
 		return "clienteListar";
 	}
+	@RequestMapping(value = "index")
+	public String index(Model model) {
+	
 
+		return "index";
+	}
 	@RequestMapping(value = "/form")
 	public String crear(Model model) {
 		Cliente cliente = new Cliente();

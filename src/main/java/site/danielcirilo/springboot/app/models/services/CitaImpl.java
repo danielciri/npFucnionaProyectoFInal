@@ -3,10 +3,12 @@ package site.danielcirilo.springboot.app.models.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import site.danielcirilo.springboot.app.models.entity.Cita;
 import site.danielcirilo.springboot.app.models.repository.ICitaRepository;
 
+@Service
 public class CitaImpl implements ICitaService{
 	
 	@Autowired

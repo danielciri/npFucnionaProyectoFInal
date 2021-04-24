@@ -9,11 +9,18 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "citas")
@@ -28,7 +35,7 @@ public class Cita implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idCita;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Cliente cliente;
 
 	@Temporal(TemporalType.TIME)
@@ -38,12 +45,14 @@ public class Cita implements Serializable {
 	@Column
 	private String asunto;
 
+	/*
 	@OneToOne(fetch = FetchType.LAZY)
 	private Abogado abogado;
+	*/
 
-	@Column(name = "estado_cita")
-	private boolean estadoCita;
 
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	@Column(name = "fecha_programada")
 	private Date fechaProgramada;
@@ -80,21 +89,6 @@ public class Cita implements Serializable {
 		this.asunto = asunto;
 	}
 
-	public Abogado getAbogado() {
-		return abogado;
-	}
-
-	public void setAbogado(Abogado abogado) {
-		this.abogado = abogado;
-	}
-
-	public boolean isEstadoCita() {
-		return estadoCita;
-	}
-
-	public void setEstadoCita(boolean estadoCita) {
-		this.estadoCita = estadoCita;
-	}
 
 	public Date getFechaProgramada() {
 		return fechaProgramada;
