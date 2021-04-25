@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/menu :: head">
+
+
+</head>
+<body class="body-expanded">
+	<header th:replace="layout/menu :: header"> </header>
+	<h1 class="titleFormulario" th:text="${titulo}"></h1>
+
+	<div class="row mt-5" id="jumbo-ventas">
+
+		<div
+			class="col-md-7 animate__animated animate__zoomIn daniel rounded border border-info p-4">
+
+			<form id="forma" th:action="@{/registrarCaso}" method="post"
+				th:object="${caso}">
+				
+				<div class="row">
+					<div class="col">
+						<label for="fechaFinalizacion">Fecha de Finalizacion</label> <input
+							type="date" class="form-control"
+							th:errorClass="'form-control alert-danger'"
+							placeholder="Fecha de finalizacion" th:field="*{fechaFinalizacion}">
+						<small class="form-text text-danger"
+							th:if="${#fields.hasErrors('fechaFinalizacion')}"
+							th:errors="*{fechaFinalizacion}"></small>
+
+					</div>
+					<div class="col">
+
+						<label for="nacionalidad">Descripcion</label> <input type="text"
+							class="form-control" placeholder="Descripcion"
+							th:field="*{descripcion}"
+							th:errorClass="'form-control alert-danger'"> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('descripcion')}"
+							th:erros="*{descripcion}"></small>
+					</div>
+
+
+
+				</div>
+				<div class="row">
+					<div class="col">
+
+						<label for="tipoDoc">Cliente</label> <select class="form-control"
+							th:errorClass="'form-control alert-danger'"
+							th:field="*{cliente}">
+							<option value="">--Seleccionar--</option>
+							<option th:each="cliente: ${listadoClientes}"
+								th:text="${cliente.nombre } + ' ' + ${cliente.apellido} "
+								th:value="${cliente}"></option>
+						</select> <small class="form-text text-danger"
+							th:if="${#fields.hasErrors('cliente')}" th:errors="*{cliente}"></small>
+
+					</div>
+					<div class="col">
+
+						<label for="tipoDoc">Abogado</label> <select class="form-control"
+							th:errorClass="'form-control alert-danger'"
+							th:field="*{abogado}">
+							<option value="">--Seleccionar--</option>
+							<option th:each="abogado: ${listadoAbogados}"
+								th:text="${abogado.nombre } + ' ' + ${abogado.apellido} "
+								th:value="${abogado}"></option>
+						</select> <small class="form-text text-danger"
+							th:if="${#fields.hasErrors('abogado')}" th:errors="*{cliente}"></small>
+
+					</div>
+
+
+
+
+
+				</div>
+				<div class="row">
+					<div class="col">
+
+						<label for="tipoDoc">Servicio</label> <select class="form-control"
+							th:errorClass="'form-control alert-danger'"
+							th:field="*{servicio}">
+							<option value="">--Seleccionar--</option>
+							<option th:each="servicio: ${servicios}"
+								th:text="${servicio.nombre }"
+								th:value="${servicio}"></option>
+						</select> <small class="form-text text-danger"
+							th:if="${#fields.hasErrors('servicio')}" th:errors="*{servicio}"></small>
+
+					</div>
+					<div class="col">
+
+						<label for="numeroPhone">Nombre</label> <input
+							type="text" class="form-control"
+							th:errorClass="'form-control alert-danger'"
+							placeholder="Nombre" th:field="*{nombre}">
+						<small class="form-text text-danger"
+							th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+
+					</div>
+
+
+				</div>
+
+			
+				<br></br>
+				<button type="submit" class="btn btn-primary btn-register"
+					id="submit">Guardar nuevo caso</button>
+				<input type="hidden" th:field="*{id}" />
+			</form>
+
+		</div>
+
+	</div>
+</body>
+</html>

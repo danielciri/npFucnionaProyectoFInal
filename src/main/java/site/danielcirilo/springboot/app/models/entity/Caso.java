@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -26,51 +27,68 @@ import javax.validation.constraints.NotNull;
 public class Caso {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long codigoCaso;
+	private Long id;
 
-	@JoinColumn(name = "nombre_servicio")
+	@JoinColumn(name = "servicio")
 	@OneToOne(cascade = CascadeType.ALL)
 	@NotNull
-	private Servicio nombreServicio;
+	private Servicio servicio;
 
 	@Column(name = "fecha_inicio")
 	private Date fechaInicio;
 
+	@NotNull
+	@Future
 	@Column(name = "fecha_finalizacion")
-	
 	private Date fechaFinalizacion;
 
-	@JoinColumn(name = "nombre_cliente")
+	@JoinColumn(name = "cliente")
 	@OneToOne(cascade = CascadeType.ALL)
 	@NotNull
-	private Cliente nombreCliente;
+	private Cliente cliente;
 
 	@OneToOne(fetch = FetchType.LAZY)
-	private Abogado licencia;
+	private Abogado abogado;
 
-	@Column(name = "titulo_caso")
+	@Column(name = "nombre")
 	@NotEmpty
-	private String titulo;
+	private String nombre;
+
+	@Column
+	@NotEmpty
+	private String descripcion;
 
 	@PrePersist
 	public void prePersist() {
 		fechaInicio = new Date();
 	}
 
-	public Long getCodigoCaso() {
-		return codigoCaso;
+
+
+
+
+	public Long getId() {
+		return id;
 	}
 
-	public void setCodigoCaso(Long codigoCaso) {
-		this.codigoCaso = codigoCaso;
+
+
+
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public Servicio getNombreServicio() {
-		return nombreServicio;
+
+
+
+
+	public Servicio getServicio() {
+		return servicio;
 	}
 
-	public void setNombreServicio(Servicio nombreServicio) {
-		this.nombreServicio = nombreServicio;
+	public void setServicio(Servicio servicio) {
+		this.servicio = servicio;
 	}
 
 	public Date getFechaInicio() {
@@ -89,28 +107,44 @@ public class Caso {
 		this.fechaFinalizacion = fechaFinalizacion;
 	}
 
-	public Cliente getNombreCliente() {
-		return nombreCliente;
+	public Cliente getCliente() {
+		return cliente;
 	}
 
-	public void setNombreCliente(Cliente nombreCliente) {
-		this.nombreCliente = nombreCliente;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
-	public Abogado getLicencia() {
-		return licencia;
+	public Abogado getAbogado() {
+		return abogado;
 	}
 
-	public void setLicencia(Abogado licencia) {
-		this.licencia = licencia;
+	public void setAbogado(Abogado abogado) {
+		this.abogado = abogado;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	public String getTitulo() {
-		return titulo;
+		return nombre;
 	}
 
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
+	public void setTitulo(String nombre) {
+		this.nombre = nombre;
 	}
 
 }

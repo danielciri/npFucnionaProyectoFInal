@@ -35,7 +35,7 @@ public class Abogado extends Persona implements Serializable {
 
 	// Como es una relacion bireccional es decir ambos se corresponden, se debe
 	// colocar el mapped by
-	@OneToMany(mappedBy = "licencia", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "abogado", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Caso> casos;
 
 	public Abogado() {
