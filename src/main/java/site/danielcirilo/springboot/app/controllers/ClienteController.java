@@ -32,20 +32,15 @@ public class ClienteController {
 		model.addAttribute("titulo", "Listado de clientes");
 		model.addAttribute("clientes", clienteService.findAll());
 
-		return "clienteListar";
+		return "vistas/clientes/clienteListar";
 	}
-	@RequestMapping(value = "index")
-	public String index(Model model) {
-	
 
-		return "index";
-	}
 	@RequestMapping(value = "/form")
 	public String crear(Model model) {
 		Cliente cliente = new Cliente();
 		model.addAttribute("titulo", "Alta nuevo cliente");
 		model.addAttribute("cliente", cliente);
-		return "form";
+		return "vistas/clientes/form";
 	}
 
 	@ModelAttribute("TipoDocumento")
@@ -59,7 +54,7 @@ public class ClienteController {
 			
 		if (result.hasErrors()) {
 			model.addAttribute("titulo", "Alta nuevo cliente");
-			return "form";
+			return "vistas/clientes/form";
 		} else {
 	
 			clienteService.save(cliente);
@@ -78,7 +73,7 @@ public class ClienteController {
 		}
 		model.addAttribute("cliente", cliente);
 		model.addAttribute("titulo", "Editar Cliente");
-		return "form";
+		return "vistas/clientes/form";
 	
 	}
 

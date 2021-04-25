@@ -1,6 +1,8 @@
 package site.danielcirilo.springboot.app.controllers;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -36,12 +38,13 @@ public class CitaController {
 	@RequestMapping(value = "/formCitas", method = RequestMethod.POST)
 	public String guardar(@Valid Cita cita, BindingResult result, Model model) {
 		validadorCita.validate(cita, result);
-
+			
 		if (result.hasErrors()) {
 			model.addAttribute("titulo", "Anadir Nueva Cita");
 			return "vistas/citas/formCitas";
 
 		} else {
+			System.out.println("Datos cita semana:" + cita.getHora());
 			citaService.save(cita);
 			return "redirect:listaCitas";
 		}
@@ -51,6 +54,8 @@ public class CitaController {
 	@RequestMapping(value = "listaCitas")
 	public String listar(Model model) {
 		model.addAttribute("titulo", "Citas pendientes");
+
+		
 		model.addAttribute("citas", citaService.findAll());
 
 
@@ -60,8 +65,8 @@ public class CitaController {
 	public String listaCitasMes(Model model) {
 		model.addAttribute("titulo", "Citas del mes");
 		model.addAttribute("citas", citaService.findAll());
-		System.out.println("Datos citas:" + citaService.citasMes());
-		System.out.println("Datos cita semana:" + citaService.citasMes());
+
+
 
 		return "vistas/citas/listar";
 	}
