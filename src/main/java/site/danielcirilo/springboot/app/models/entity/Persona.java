@@ -44,10 +44,11 @@ public abstract class Persona implements Serializable {
 	protected String direccion;
 
 
-	@Temporal(TemporalType.DATE)
+	
 	@Column(name = "fecha_nacimiento")
 	@NotNull
 	@Past
+	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fecha_nacimiento;
 

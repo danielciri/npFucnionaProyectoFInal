@@ -25,7 +25,7 @@
 							th:errorClass="'form-control alert-danger'" th:field="*{cliente}">
 							<option value="">--Seleccionar--</option>
 							<option th:each="cliente: ${listaClientes}"
-								th:text="${cliente.nombre}" th:value="${cliente.id}"></option>
+								th:text="${cliente.nombre} + ' ' + ${cliente.apellido}" th:value="${cliente.id}"></option>
 						</select> <small class="form-text text-danger"
 							th:if="${#fields.hasErrors('cliente')}"
 							th:errors="*{cliente}"></small>

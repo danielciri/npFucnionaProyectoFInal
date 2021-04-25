@@ -45,8 +45,10 @@
 						<tr>
 							<th>Fecha Inicio</th>
 							<th>Fecha Finalizacion</th>
+							<th>Servicio</th>
 							<th>Cliente</th>
 							<th>Abogado</th>
+							
 							<th>Nombre del caso</th>
 							<th>Descripcion</th>
 							<th>Editar</th>
@@ -57,13 +59,13 @@
 							<td th:text="${caso.fechaInicio}"></td>
 							<td th:text="${caso.fechaFinalizacion}"></td>
 							<td th:text="${caso.servicio.nombre} "></td>
-								<td th:text="${caso.cliente.nombre + ' '+${caso.cliente.apellido}"> </td>
-							<td th:text="${caso.abogado.nombre + ' '+${caso.abogado.apellido}"></td>
+							<td th:text="${caso.cliente.nombre} + ' '+${caso.cliente.apellido}"></td>
+							<td th:text="${caso.abogado.nombre} + ' '+${caso.abogado.apellido}"></td>
 							<td th:text="${caso.nombre}"></td>
-							<td th:text="${caso.asunto} "></td>
+							<td th:text="${caso.descripcion} "></td>
 
 							<td><a class="btn btn-primary btn-sm"
-								th:href="@{/registrarCaso/} + ${caso.codigoCaso}" th:text="'editar'"></a></td>
+								th:href="@{/registrarCaso/} + ${caso.id}" th:text="'editar'"></a></td>
 
 						</tr>
 

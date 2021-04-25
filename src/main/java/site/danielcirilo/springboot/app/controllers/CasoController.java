@@ -41,6 +41,7 @@ public class CasoController {
 	@RequestMapping(value = "/listaCasos")
 	public String listarCasos(Model model) {
 		model.addAttribute("titulo", "Listado casos");
+		model.addAttribute("casos", casoService.findAll());
 		return "/vistas/casos/listar";
 	}
 	
@@ -70,7 +71,7 @@ public class CasoController {
 	@RequestMapping(value = "/registrarCaso", method = RequestMethod.POST)
 	public String guardar(@Valid Caso caso, BindingResult result, Model model) {
 		if(result.hasErrors()) {
-			model.addAttribute("Titulo","Registro nuevo caso");
+			model.addAttribute("titulo","Registro nuevo caso");
 			return "vistas/casos/form";
 		}else {
 			casoService.save(caso);

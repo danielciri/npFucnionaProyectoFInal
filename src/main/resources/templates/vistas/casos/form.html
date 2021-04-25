@@ -35,7 +35,7 @@
 							th:errorClass="'form-control alert-danger'"> <small
 							class="form-text text-danger"
 							th:if="${#fields.hasErrors('descripcion')}"
-							th:erros="*{descripcion}"></small>
+							th:errors="*{descripcion}"></small>
 					</div>
 
 
@@ -50,7 +50,7 @@
 							<option value="">--Seleccionar--</option>
 							<option th:each="cliente: ${listadoClientes}"
 								th:text="${cliente.nombre } + ' ' + ${cliente.apellido} "
-								th:value="${cliente}"></option>
+								th:value="${cliente.id}"></option>
 						</select> <small class="form-text text-danger"
 							th:if="${#fields.hasErrors('cliente')}" th:errors="*{cliente}"></small>
 
@@ -63,7 +63,7 @@
 							<option value="">--Seleccionar--</option>
 							<option th:each="abogado: ${listadoAbogados}"
 								th:text="${abogado.nombre } + ' ' + ${abogado.apellido} "
-								th:value="${abogado}"></option>
+								th:value="${abogado.id}"></option>
 						</select> <small class="form-text text-danger"
 							th:if="${#fields.hasErrors('abogado')}" th:errors="*{cliente}"></small>
 
@@ -83,7 +83,7 @@
 							<option value="">--Seleccionar--</option>
 							<option th:each="servicio: ${servicios}"
 								th:text="${servicio.nombre }"
-								th:value="${servicio}"></option>
+								th:value="${servicio.id}"></option>
 						</select> <small class="form-text text-danger"
 							th:if="${#fields.hasErrors('servicio')}" th:errors="*{servicio}"></small>
 

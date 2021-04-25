@@ -13,9 +13,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * 
@@ -33,12 +37,14 @@ public class Caso {
 	@OneToOne(cascade = CascadeType.ALL)
 	@NotNull
 	private Servicio servicio;
-
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "fecha_inicio")
 	private Date fechaInicio;
 
-	@NotNull
 	@Future
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "fecha_finalizacion")
 	private Date fechaFinalizacion;
 
@@ -48,6 +54,7 @@ public class Caso {
 	private Cliente cliente;
 
 	@OneToOne(fetch = FetchType.LAZY)
+	@NotNull
 	private Abogado abogado;
 
 	@Column(name = "nombre")
