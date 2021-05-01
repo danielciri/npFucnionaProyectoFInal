@@ -41,11 +41,11 @@
 				<table>
 					<thead>
 						<tr>
-							<th>Fecha</th>
-							<th>Hora</th>
-							<th>Cliente </th>
-							<th>Asunto a tratar</th>
-							<th>Editar</th>
+							<th>Fecha <i class="fa fa-calendar"></i>  </th>
+							<th>Hora <i class="fa fa-clock"></i></th>
+							<th>Cliente  <i class="fa fa-user"></i></th>
+							<th>Asunto a tratar <i class="fa fa-comment"></i></th>
+							<th>Accion <i class="fa fa-cogs"></i></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -55,14 +55,19 @@
 							<td th:text="${cita.cliente.nombre} + ' '+${cita.cliente.apellido}"></td>
 							<td th:text="${cita.asunto} " ></td>
 				
-							<td><a class="btn btn-primary btn-sm"
-							th:href="@{/formCitas/} + ${cita.idCita}" th:text="'editar'"></a></td>
+							<td><a class="btn btn-primary btn-sm "
+							th:href="@{/formCitas/} + ${cita.idCita}" ><i class="fa fa-edit"></i></a>
+							<a class="btn btn-danger btn-sm  btn-delete"
+							th:href="@{/formCitas/} + ${cita.idCita}" ><i class="fa fa-times-circle"></i>
+</a>
+							</td>
 						
 						</tr>
 
 						
 					</tbody>
 				</table>
+						<nav th:replace="paginator-nav  :: paginator" > </nav>
 
 			</div>
 		</div>

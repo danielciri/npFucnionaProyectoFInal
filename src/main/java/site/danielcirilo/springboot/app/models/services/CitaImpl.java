@@ -6,6 +6,8 @@ import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import site.danielcirilo.springboot.app.models.entity.Cita;
@@ -44,22 +46,29 @@ public class CitaImpl implements ICitaService{
 	}
 
 	@Override
-	public List<Cita> citasDia() {
+	public Page<Cita> citasDia(Pageable pageable) {
 	
-		return citaRepo.citasDia(new Date(System.currentTimeMillis()));
+		return citaRepo.citasDia(pageable,new Date(System.currentTimeMillis()));
 	}
 
 	@Override
-	public List<Cita> citasMes() {
+	public Page<Cita> citasMes(Pageable pageable) {
 	
-		return citaRepo.citasMes( );
+		return citaRepo.citasMes(pageable);
 	}
 
 	@Override
-	public List<Cita> citaSemana() {
+	public Page<Cita> citaSemana(Pageable pageable) {
 		// TODO Auto-generated method stub
-		return citaRepo.citasMes();
+		return citaRepo.citasMes(pageable);
 	}
+
+	@Override
+	public Page<Cita> findAll(Pageable pageable) {
+		// TODO Auto-generated method stub
+		return citaRepo.findAll(pageable);
+	}
+
 
 
 

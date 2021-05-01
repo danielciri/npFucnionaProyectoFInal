@@ -11,7 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
-
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import javax.persistence.Table;
@@ -32,6 +32,9 @@ public class Cliente extends Persona implements Serializable {
 	@Column(name = "documento_cliente")
 	@Size(max = 9,min = 9)
 	private String documentoCliente;
+	
+
+
 	
 	@Column
 	@NotEmpty

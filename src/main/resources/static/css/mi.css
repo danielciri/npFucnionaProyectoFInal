@@ -538,3 +538,24 @@ table {
 #forma .row .col-name{
 	margin-top: 0px;
 }
+
+
+.card{
+	border-color: black;
+}
+
+.card-body .btn-delete{
+	margin-left: -2px;
+}
+
+
+
+
+.card-body .btn-delete:hover{
+	color: red;
+	color: white;
+}
+
+.pagination{
+	margin-left: 400px;
+}

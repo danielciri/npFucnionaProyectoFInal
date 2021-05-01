@@ -12,6 +12,7 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.websocket.ClientEndpoint;
 
 @Entity
 @Table(name = "abogados")
@@ -23,6 +24,8 @@ public class Abogado extends Persona implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	
+
 	
 	@Column(name = "num_licencia", unique = true)
 	@NotEmpty

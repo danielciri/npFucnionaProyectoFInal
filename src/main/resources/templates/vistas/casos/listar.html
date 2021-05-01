@@ -64,14 +64,22 @@
 							<td th:text="${caso.nombre}"></td>
 							<td th:text="${caso.descripcion} "></td>
 
-							<td><a class="btn btn-primary btn-sm"
-								th:href="@{/registrarCaso/} + ${caso.id}" th:text="'editar'"></a></td>
+						
+								
+								<td><a class="btn btn-primary btn-sm "
+							th:href="@{/registrarCaso/} + ${caso.id}" ><i class="fa fa-edit"></i></a>
+							<a class="btn btn-danger btn-sm  btn-delete"
+						th:href="@{/registrarCaso/} + ${caso.id}" ><i class="fa fa-times-circle"></i>
+</a>
+							</td>
+							
 
 						</tr>
 
 
 					</tbody>
 				</table>
+				<nav th:replace="paginator-nav  :: paginator" > </nav>
 
 			</div>
 		</div>

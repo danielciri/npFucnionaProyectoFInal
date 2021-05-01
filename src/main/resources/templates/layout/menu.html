@@ -6,12 +6,14 @@
       <title>Side menu</title>
       <link rel="stylesheet" th:href="@{/css/mi.css}">
       <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-      <link rel="stylesheet"
-        th:href="@{https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css}">
+      <link 
+        th:href="@{https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css}" th:rel="@{stylesheet}" type='text/css'>
          
    </head>
    <body class="body-expanded">
    <header th:fragment="">
+   
+   
       <nav class="navbar navbar-expand-md navbar-light" id="navbar" style="background-color: #0e76a8;">
          <a class="navbar-brand" href="#"></a> <button aria-label="Toggle navigation" class="navbar-toggler" data-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button>
          <div class="collapse navbar-collapse nav">
@@ -30,8 +32,12 @@
                </li>
             </ul>
          </div>
+         	
       </nav>
-     
+     	<div class="alert alert-success text-center" th:if="${success != null}" th:text="${success}"></div>
+   		<div class="alert alert-danger text-center" th:if="${error != null}"  th:text="${error}"></div>
+   		<div class="alert alert-warning text-center" th:if="${warning!= null}"  th:text="${warning}"></div>
+   		<div class="alert alert-info text-center" th:if="${info!= null}"  th:text="${info}"></div>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
          <form class="form-inline my-2 my-lg-0">
             <input aria-label="Search" class="form-control mr-sm-2" placeholder="Search" type="search"> <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -98,15 +104,19 @@
                         </div>
                      </a>
                      <ul class="interno">
-                        <li>
-                           <a href="#">Cerrados</a>
+                     <li>
+                           <a th:href="@{/registrarCaso}">Alta nuevo caso</a>
+                        </li>
+                      <li>
+                           <a th:href="@{/listaCasos}">En Proceso</a>
                         </li>
                         <li>
-                           <a href="#">Archivados</a>
+                           <a th:href="@{/casosCerrados}">Cerrados</a>
                         </li>
-                        <li>
-                           <a href="#">En Proceso</a>
-                        </li>
+                        
+                          
+                     
+                       
                      </ul>
                   </li>
                   <li>

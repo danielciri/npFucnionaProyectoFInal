@@ -3,6 +3,8 @@ package site.danielcirilo.springboot.app.models.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,9 +19,9 @@ public class CasoImpl implements ICasoService{
 	
 	@Override
 	@Transactional
-	public List<Caso> findAll() {
+	public Page<Caso> casosEnProcesos(Pageable pageable) {
 		// TODO Auto-generated method stub
-		return (List<Caso>) casosRepo.findAll() ;
+		return casosRepo.casosEnProcesos(pageable) ;
 	}
 
 	@Override
@@ -41,6 +43,20 @@ public class CasoImpl implements ICasoService{
 	public void delete(Long id) {
 		casosRepo.deleteById(id);
 		
+	}
+
+
+
+	@Override
+	@Transactional
+	public Page<Caso> findAll(Pageable pageable) {
+		return casosRepo.findAll(pageable);
+	}
+
+	@Override
+	@Transactional
+	public Page<Caso> casosCerrados(Pageable pageable) {
+		return casosRepo.casosCerrado(pageable);
 	}
 	
 }

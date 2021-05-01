@@ -39,6 +39,7 @@ public class Caso {
 	private Servicio servicio;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
 	@Column(name = "fecha_inicio")
 	private Date fechaInicio;
 
